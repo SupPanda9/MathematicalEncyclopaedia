@@ -1,0 +1,7 @@
+Copyright (c) 2025 Nikolay Milenov Nikolaev
+
+All rights reserved.
+
+Unauthorized copying, modification, distribution, or use of this software,
+or any portion thereof, is strictly prohibited without explicit written
+permission from Nikolay Milenov Nikolaev.

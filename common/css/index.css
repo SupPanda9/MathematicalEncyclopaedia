@@ -1,0 +1,229 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Garamond, serif;
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'PeterIvanovitsch';
+  src: url('../../assets/fonts/Peter_Ivanovitsch.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Animations */
+/* Пулсираща анимация */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 20px 6px rgba(255, 255, 255, 0.35),
+      0 0 30px 10px rgba(173, 216, 230, 0.25),
+      0 0 50px 20px rgba(255, 255, 255, 0.25),
+      0 0 70px 30px rgba(173, 216, 230, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 30px 10px rgba(255, 255, 255, 0.6),
+      0 0 40px 15px rgba(173, 216, 230, 0.4),
+      0 0 60px 30px rgba(255, 255, 255, 0.4),
+      0 0 90px 45px rgba(173, 216, 230, 0.2);
+  }
+}
+
+/* Intro video */
+#intro-container, #main-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+}
+
+#intro-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#intro-music {
+  display: none;
+}
+
+/* Fade into the page when video is over */
+#fade-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: white;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+
+/* Skip button */
+#skip-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(193,189,183,255);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s;
+  padding: 0;
+}
+
+#skip-btn:hover {
+  background: white;
+  transform: translateX(-50%) scale(1.1);
+}
+
+.skip-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 12px solid black;
+  margin-right: 2px;
+}
+
+.bar {
+  width: 3px;
+  height: 18px;
+  background: black;
+}
+
+/* Main content */
+#main-content {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+/* Articles */
+#book {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.page {
+  width: 50%;
+  padding: 60px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+    url('../../assets/images/background-pattern.png');
+  background-size: cover;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.1);
+}
+
+.article {
+  margin-bottom: 60px;
+  padding: 0 40px;
+  border-radius: 12px;
+  background-color: transparent;
+  box-shadow: none;
+  transition: background-color 1.5s ease, box-shadow 1.5s ease;
+  position: relative;
+  z-index: 0;
+}
+
+.article h2 {
+  font-family: Garamond, serif;
+  font-size: 1.8rem;
+  color: #3b2f1c;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.dropcap {
+  float: left;
+  font-size: 5rem;
+  line-height: 0.4;
+  color: #3b2f1c;
+  font-weight: normal;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-family: 'PeterIvanovitsch', cursive;
+}
+
+.article .content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.article.rev .content {
+  flex-direction: row-reverse; 
+  gap: 20px;
+}
+
+.article.rev {
+  margin: 0;
+}
+
+.article .content img {
+  width: 100px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.article .text-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.article p {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+  color: #3a2d1f;
+  margin: 0;
+}
+
+/* Glow начално състояние */
+.article.glow-active {
+  background-color: rgba(240, 248, 255, 0.6);
+  box-shadow:
+    0 0 20px 6px rgba(255, 255, 255, 0.35),
+    0 0 30px 10px rgba(173, 216, 230, 0.25),
+    0 0 50px 20px rgba(255, 255, 255, 0.25),
+    0 0 70px 30px rgba(173, 216, 230, 0.1);
+  z-index: 5;
+  /* transition е в основния селектор */
+}
+
+.article.glow-pulse {
+  animation: glowPulse 3s infinite ease-in-out alternate;
+}

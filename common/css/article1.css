@@ -1,0 +1,1097 @@
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: black;
+  background-color: black;
+  font-family: Georgia, serif;
+  scroll-behavior: auto;
+  overscroll-behavior: none;
+}
+
+.text-box {
+  position: relative;
+  padding: 45px 20px 20px 20px;
+  text-align: justify;
+}
+
+.tts-button {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 15px;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.tts-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.fallback-iy {
+  font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.back-button-container {
+  text-align: center;
+  transform: translate(-50%, -50%);
+  margin: 30px;
+  position: fixed;
+  z-index: 100;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 5px;
+  font-size: 2em;
+  line-height: 2rem;
+  background-color: rgb(255, 255, 255, 0.8);
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Scene 1 */
+.scene-1 {
+  min-height: 100vh;
+}
+
+.background-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 2;
+}
+
+.text-box-1 {
+  position: absolute;
+  top: calc(50% + 20px);
+  right: 15%;
+  transform: translateY(-50%);
+  max-width: 35%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(255, 255, 255);
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  opacity: 0;
+  z-index: 2;
+  text-align: justify;
+}
+
+.intro-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  opacity: 1;
+  z-index: 2;
+}
+
+.star-container {
+  opacity: 0;
+}
+
+.star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle at center, #fff 70%, transparent 85%);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.9),
+    0 0 10px 3px rgba(255, 255, 255, 0.6);
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+  animation: pulseStar 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+  /* pointer-events: none; */
+  z-index: 3;
+}
+
+/* Фини кръстчета (лъчи) около звездата */
+.star::before,
+.star::after {
+  content: "";
+  position: absolute;
+  background: white;
+  opacity: 0.9;
+  border-radius: 1px;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+
+.star::before {
+  width: 2px;
+  height: 8px; /* малко по-къси */
+  transform: translate(-50%, -50%);
+}
+
+.star::after {
+  width: 8px; /* по-къси и по-компактни */
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulseStar {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
+  }
+}
+
+/* Scene 2 */
+.scene-2 {
+  position: relative;
+  height: 100vh;
+  background-color: #000000;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  margin-top: 0;
+}
+
+.background-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e0c59b;
+  opacity: 0;
+  z-index: 0;
+}
+
+.figure-2 {
+  position: absolute;
+  width: 50%;
+  max-width: 350px;
+  border-radius: 15px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+  margin: 0;
+}
+
+.figure-2 img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain; /* или cover, в зависимост от желания ефект */
+  border-radius: 15px; /* ако искаш да имат същия радиус като контейнера */
+}
+
+.figure-2 figcaption {
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+  margin-top: 10px;
+}
+
+.kepler {
+  left: 20%;
+}
+
+.brahe {
+  left: 80%;
+}
+
+.figure-2.normal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.figure-2.happy,
+.figure-2.angry {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.text-box-2a,
+.text-box-2b {
+  position: absolute;
+  width: 100%;
+  max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.45);
+  color: rgb(0, 0, 0);
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translateX(-50%);
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  z-index: 2;
+}
+
+.text-box-2a {
+  top: 17%;
+  z-index: 3;
+}
+.text-box-2b {
+  top: 47%;
+  z-index: 3;
+}
+
+/* Scene 3 */
+
+.scene-3 {
+  position: relative;
+  min-height: 100vh;
+  background-color: black;
+  overflow: hidden;
+}
+
+.figure-3 {
+  position: absolute;
+  width: 50%;
+  max-width: 450px;
+  border-radius: 15px;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  margin: 0;
+}
+
+.figure-3 img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.figure-3 figcaption {
+  text-align: center;
+  font-size: 1.2em;
+  color: #eee;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.text-box-3a,
+.text-box-3b,
+.text-box-3c {
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(255, 255, 255);
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  left: 25%;
+}
+
+.text-box-3a {
+  top: 30%;
+}
+
+.text-box-3b {
+  top: 85%;
+}
+
+.text-box-3c {
+  top: 50%;
+}
+
+.background-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/images/article1/nebula.png") no-repeat center
+    center;
+  background-size: cover;
+  z-index: 0;
+  opacity: 1;
+}
+
+/* Scene 4 */
+.scene-4 {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgb(0, 0, 0);
+  overflow: hidden;
+}
+
+.background-4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/images/article1/dotted-paper.png");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  z-index: 0;
+  opacity: 0.2;
+}
+
+#threejs-container-4 {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  border-radius: 15px;
+  background-color: transparent;
+  visibility: hidden;
+}
+
+.conic-section-name-4 {
+  position: absolute;
+  top: 90%;
+  left: 40%;
+  width: 100%;
+  max-width: 200px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000000;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  user-select: none;
+  visibility: hidden;
+}
+.text-box-4a,
+.text-box-4b {
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000000;
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  left: 75%;
+}
+
+.text-box-4a {
+  top: 30%;
+}
+
+.text-box-4b {
+  top: 70%;
+}
+
+.figure-4 {
+  position: absolute;
+  width: 50%;
+  max-width: 300px;
+  border-radius: 15px;
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  margin: 0;
+}
+
+.figure-4 img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.figure-4 figcaption {
+  text-align: center;
+  font-size: 1.2em;
+  color: #000000;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* Scene 5 */
+.scene-5 {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgb(0, 0, 0);
+  overflow: hidden;
+}
+
+.background-5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/images/article1/astronomical-map.png");
+  background-repeat: repeat;
+  z-index: 0;
+  opacity: 0.6;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.text-box-5a,
+.text-box-5b,
+.text-box-5c,
+.text-box-5d,
+.text-box-5e,
+.text-box-5f,
+.text-box-5g,
+.text-box-5h {
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000000;
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  left: 75%;
+}
+
+.text-box-5a {
+  top: 30%;
+  left: 25%;
+}
+
+.text-box-5b {
+  top: 70%;
+  left: 25%;
+}
+
+.text-box-5c {
+  top: 50%;
+  left: 25%;
+}
+
+.text-box-5d {
+  top: 29%;
+  left: 75%;
+}
+
+.text-box-5e {
+  top: 50%;
+  left: 75%;
+}
+
+.text-box-5f {
+  top: 50%;
+  left: 25%;
+}
+
+.text-box-5g {
+  top: 18%;
+  left: 20%;
+  max-width: 550px;
+}
+
+.text-box-5h {
+  top: 66%;
+  left: 20%;
+  max-width: 550px;
+}
+
+.figure-5 {
+  position: absolute;
+  width: 50%;
+  max-width: 600px;
+  border-radius: 15px;
+  z-index: 2;
+  margin: 0;
+}
+
+.figure-5 img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.figure-5 figcaption {
+  text-align: center;
+  font-size: 1.2em;
+  color: #000000;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.figure-5.kepler-1st-law {
+  max-width: 500px;
+  transform: translate(-50%, -50%);
+  left: 80%;
+  top: 50%;
+}
+
+.figure-5.kepler-2nd-law {
+  max-width: 500px;
+  transform: translate(-50%, -50%);
+  left: 20%;
+  top: 50%;
+}
+
+.figure-5.kepler-3rd-law {
+  max-width: 500px;
+  transform: translate(-50%, -50%);
+  left: 80%;
+  top: 50%;
+}
+
+.figure-5.earth-mars-orbits {
+  height: 500px;
+  max-width: 500px;
+  transform: translate(-50%, -50%);
+  left: 80%;
+  top: 50%;
+}
+
+.compass-container-5 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.compass {
+  height: 100vh;
+  width: auto;
+  display: block;
+}
+
+.conic-section-container-5 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  max-width: 400px;
+  text-align: center;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  top: 62%;
+  left: 75%;
+}
+
+#conic-canvas-5 {
+  border: 1px solid #aaa;
+  background: #fff;
+  margin-top: 1rem;
+  width: 500px;
+  height: 250px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.conic-section-container-5 label {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  top: 95%;
+  left: 25%;
+}
+
+.conic-section-container-5 input {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  top: 95%;
+  left: 75%;
+}
+
+/* Scene 6 */
+.scene-6 {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgb(0, 0, 0);
+  overflow: hidden;
+}
+
+.background-6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/images/article1/stars.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+}
+
+.text-box-6a {
+  position: absolute;
+  width: 100%;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #ffffff;
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.text-box-6b,
+.text-box-6c,
+.text-box-6d,
+.text-box-6e,
+.text-box-6f,
+.text-box-6g,
+.text-box-6h,
+.text-box-6i {
+  position: absolute;
+  width: 100%;
+  max-width: 550px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000000;
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  left: 75%;
+  opacity: 0;
+}
+
+.text-box-6a {
+  top: 50%;
+  left: 50%;
+}
+.text-box-6b {
+  top: 50%;
+  left: 50%;
+}
+.text-box-6c {
+  top: 21%;
+  left: 25%;
+}
+.text-box-6d {
+  top: 68%;
+  left: 25%;
+}
+.text-box-6e {
+  top: 30%;
+  left: 75%;
+}
+.text-box-6f {
+  top: 76%;
+  left: 75%;
+}
+.text-box-6g {
+  top: 50%;
+  left: 20%;
+}
+.text-box-6h {
+  top: 40%;
+  left: 80%;
+}
+.text-box-6i {
+  top: 80%;
+  left: 80%;
+}
+
+.figure-6 {
+  position: absolute;
+  width: 50%;
+  max-width: 600px;
+  border-radius: 15px;
+  z-index: 2;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+.figure-6 img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.figure-6 figcaption {
+  text-align: center;
+  font-size: 1.2em;
+  color: #000000;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.figure-6.laser-lunar-reflector {
+  transform: translate(-50%, -50%);
+  left: 17.5%;
+  top: 50%;
+  max-width: 400px;
+}
+
+.figure-6.laser-earth-reflector {
+  transform: translate(-50%, -50%);
+  left: 82.5%;
+  top: 50%;
+  max-width: 400px;
+}
+
+.figure-6.log-scale {
+  transform: translate(-50%, -50%);
+  left: 75%;
+  top: 50%;
+  max-width: 600px;
+}
+
+.figure-6.parallax {
+  transform: translate(-50%, -50%);
+  left: 30%;
+  top: 45%;
+  max-width: 450px;
+}
+
+.figure-6.hipparchus {
+  transform: translate(-50%, -50%);
+  left: 10%;
+  top: 85%;
+  max-width: 450px;
+}
+
+#threejs-container-6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#threejs-container-6a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Scene 7 */
+.scene-7 {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgb(0, 0, 0);
+  overflow: hidden;
+}
+
+.background-7 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/images/article1/stratosphere_full.png");
+  background-size: cover;
+  background-position: center 100%;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+#threejs-container-7 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.text-box-7a,
+.text-box-7b,
+.text-box-7c,
+.text-box-7d,
+.text-box-7e,
+.text-box-7f,
+.text-box-7g,
+.text-box-7h {
+  position: absolute;
+  width: 100%;
+  max-width: 550px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000000;
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  left: 75%;
+  opacity: 0;
+}
+
+.text-box-7i {
+  position: absolute;
+  width: 100%;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #ffffff;
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.5;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.text-box-7a {
+  top: 35%;
+  left: 25%;
+}
+.text-box-7b {
+  top: 80%;
+  left: 25%;
+}
+.text-box-7c {
+  top: 35%;
+  left: 75%;
+}
+.text-box-7d {
+  top: 80%;
+  left: 75%;
+}
+.text-box-7e {
+  top: 75%;
+  left: 25%;
+}
+.text-box-7f {
+  top: 30%;
+  left: 25%;
+}
+.text-box-7g {
+  top: 50%;
+  left: 25%;
+}
+.text-box-7h {
+  top: 50%;
+  left: 75%;
+}
+.text-box-7i {
+  top: 50%;
+  left: 50%;
+}
+
+.figure-7 {
+  position: absolute;
+  width: 50%;
+  max-width: 600px;
+  border-radius: 15px;
+  z-index: 2;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+.figure-7 img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.figure-7 figcaption {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  color: #000000;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.figure-7.hohmann-transfer {
+  transform: translate(-50%, -50%);
+  left: 75%;
+  top: 50%;
+  max-width: 400px;
+}
+
+.figure-7.hohmann-transfer img {
+  width: 400px;
+  background-color: rgb(255, 255, 255, 0.8);
+}
+
+.video-container-7a {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  max-width: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.video-container-7a iframe{
+  width: 600px;
+  height: 337.5px;
+}
+
+.video-container-7b {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  max-width: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.video-container-7b iframe{
+  width: 600px;
+  height: 337.5px;
+}
+
+/* Scene 8 */
+.scene-8 {
+  position: relative;
+  min-height: 100vh;
+  background-color: #fefefe;
+  overflow: hidden;
+  color: #222;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
+}
+
+.background-8 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/images/background-pattern-8.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.content.resources-content {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 25px 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: #222;
+  line-height: 1.6;
+  font-size: 1.1em;
+  text-align: left;
+}
+
+.content.resources-content h2 {
+  font-size: 2.2rem;
+  color: #4a90e2;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #4a90e2;
+  padding-bottom: 8px;
+}
+
+.content.resources-content h3 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  margin-bottom: 12px;
+  color: #3a6fb0;
+}
+
+.content.resources-content ul {
+  list-style-type: disc;
+  margin-left: 25px;
+  color: #444;
+}
+
+.content.resources-content li {
+  margin-bottom: 0.8em;
+}
+
+.content.resources-content a {
+  color: #2a64bf;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.content.resources-content a:hover {
+  color: #1a3f8f;
+  text-decoration: underline;
+}
+
+.resources-list {
+  list-style-type: square;
+  padding-left: 25px;
+  font-size: 1em;
+  margin-top: 30px;
+}
